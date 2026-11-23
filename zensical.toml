@@ -7,7 +7,8 @@ site_url = "https://bsouza-site.github.io/Certified-Kubernetes-Administrator/"
 
 nav = [
   "index.md",
-  { "Introdução" = "introducao/index.md" }
+  { "01. Introdução" = "introducao/index.md" },
+  { "02. Instalação do kubeadm" = "instalacao-kubeadm/index.md" }
 ]
 
 extra_css = [
