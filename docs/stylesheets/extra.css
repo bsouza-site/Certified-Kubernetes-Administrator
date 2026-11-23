@@ -1,0 +1,40 @@
+/* Identidade visual */
+
+[data-md-color-scheme="slate"] {
+    --md-hue: 215;
+    --md-default-bg-color: #101827;
+    --md-default-bg-color--light: #172235;
+    --md-code-bg-color: #0b1220;
+}
+
+/* Cabeçalho */
+
+.md-header {
+    background-color: #0b1220;
+    border-bottom: 1px solid #243449;
+}
+
+/* Títulos */
+
+.md-typeset h1 {
+    font-weight: 700;
+    color: #e2e8f0;
+}
+
+.md-typeset h2 {
+    border-bottom: 1px solid #26374d;
+    padding-bottom: 8px;
+}
+
+/* Destaques */
+
+.md-nav__link:hover,
+.md-nav__link--active {
+    color: #22d3ee !important;
+}
+
+/* Blocos de código */
+
+.md-typeset pre > code {
+    border-radius: 8px;
+}
