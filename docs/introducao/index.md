@@ -46,7 +46,7 @@ Veja abaixo os principais domínios e competências.
 * Saber como utilizar controladores e recursos de entrada;
 * Compreender e utilizar o CoreDNS.
 
-## Dicas para prova.
+# Dicas para prova.
 * A prova permite a leitura da documentação do Kubernetes;
 * Acessar sempre **[https://kubernetes.io/pt-br/docs/home/](https://kubernetes.io/pt-br/docs/home/)**;
 * Avaliar a aquisição de simulados, como **[Killer Shell](https://killer.sh/cka)** ou **[sailor.sh](https://sailor.sh/)**;
