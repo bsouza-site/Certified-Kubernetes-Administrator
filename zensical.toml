@@ -1,0 +1,34 @@
+
+[project]
+site_name = "Certified Kubernetes Administrator"
+site_description = "Documentação e estudos para a certificação CKA"
+site_author = "Bruno"
+site_url = "https://brsouza-site.github.io/Certified-Kubernetes-Administrator/"
+
+nav = [
+  "index.md",
+  { "Introdução" = "introducao/index.md" }
+]
+
+[project.theme]
+variant = "modern"
+language = "pt-BR"
+
+features = [
+  "navigation.sections",
+  "navigation.expand",
+  "navigation.top",
+  "content.code.copy",
+  "search.suggest",
+  "search.highlight"
+]
+
+[project.theme.palette]
+scheme = "slate"
+primary = "indigo"
+accent = "cyan"
+
+[project]
+extra_css = [
+  "stylesheets/extra.css"
+]
