@@ -1,47 +1,55 @@
-# 01. Introdução
+# Introdução
 
-## Objetivo
+O curso de Kubernetes é direcionado aos profissionais que desejam ampliar seus conhecimentos em Administração de Cluster Kubernetes, o treinamento visa o mercado de trabalho e também a preparação para prova de certificação CKA Certfied Kubernetes Administrator.
 
-Este capítulo apresenta os conceitos iniciais
-do Kubernetes e os fundamentos necessários
-para compreender sua arquitetura e funcionamento.
+Veja abaixo os principais domínios e competências.
 
-## O que é Kubernetes?
+## Storage (10%).
 
-Kubernetes é uma plataforma open-source utilizada
-para automatizar a implantação, o dimensionamento
-e o gerenciamento de aplicações em contêineres.
+* Implementar classes de armazenamento e provisionamento dinâmico de volumes.
+* Configurar tipos de volume, modos de acesso e políticas de recuperação.
+* Gerenciar volumes persistentes e solicitações de volumes persistentes.
 
-Também conhecido como K8s, o Kubernetes permite
-administrar aplicações distribuídas em clusters,
-oferecendo recursos de orquestração e automação.
+## Troubleshooting (30%).
 
-## Principais características
+* Solucionar problemas em clusters e nós;
+* Solucionar problemas em componentes de cluster;
+* Monitorar o uso de recursos do cluster e do aplicativo
+* Gerenciar e avaliar fluxos de saída de contêineres;
+* Solucionar problemas em serviços e redes.
 
-- Orquestração de contêineres
-- Escalabilidade de aplicações
-- Balanceamento de carga
-- Recuperação automática de falhas
-- Gerenciamento de recursos
-- Atualizações automatizadas
+## Workloads & Scheduling (15%).
 
-## Arquitetura do Kubernetes
+* Compreender implantações de aplicativos e como realizar atualizações contínuas e reversões.
+* Usar ConfigMaps e Secrets para configurar aplicativos.
+* Configurar o escalonamento automático de cargas de trabalho.
+* Compreender os princípios básicos usados para criar implantações de aplicativos robustas e com capacidade de autorrecuperação.
+* Configurar a admissão e o agendamento de Pods (limites, afinidade de nós, etc.).
 
-Um cluster Kubernetes é composto principalmente
-por dois grupos de componentes:
+## Cluster Architecture, Installation & Configuration (25%).
 
-### Control Plane
+* Gerenciar o controle de acesso baseado em funções (RBAC);
+* Preparar a infraestrutura subjacente para a instalação de um cluster Kubernetes;
+* Criar e gerenciar clusters Kubernetes usando o kubeadm;
+* Gerenciar o ciclo de vida de clusters Kubernetes
+* Implementar e configurar um plano de controle de alta disponibilidade;
+* Usar Helm e Kustomize para instalar componentes de cluster;
+* Compreender interfaces de extensão (CNI, CSI, CRI etc.)
+* Compreender CRDs, instalar e configurar operadores.
 
-Responsável por gerenciar o estado do cluster,
-tomar decisões e controlar os recursos.
+## Service & Networking (20%).
 
-### Worker Nodes
+* Compreender a conectividade entre Pods;
+* Definir e aplicar Políticas de Rede;
+* Utilizar os tipos de serviço e endpoints ClusterIP, NodePort e LoadBalancer;
+* Utilizar a API do Gateway para gerenciar o tráfego de entrada;
+* Saber como utilizar controladores e recursos de entrada;
+* Compreender e utilizar o CoreDNS.
 
-Responsáveis por executar as aplicações
-e os workloads dentro do cluster.
-
-## Próximos assuntos
-
-Nos próximos capítulos serão abordados os principais
-componentes, objetos, comandos e procedimentos
-necessários para administrar um cluster Kubernetes.
+## Dicas para prova.
+* A prova permite a leitura da documentação do Kubernetes;
+* Acessar sempre **[https://kubernetes.io/pt-br/docs/home/](https://kubernetes.io/pt-br/docs/home/)**;
+* Avaliar a aquisição de simulados, como **[Killer Shell](https://killer.sh/cka)** ou **[sailor.sh](https://sailor.sh/)**;
+* Veja informações da prova na página do **[Cloud Native Computing Foundation](https://www.cncf.io/training/certification/cka/)**;
+* Veja mais dicas para a prova em **[Important Instructions: CKA and CKAD](https://docs.linuxfoundation.org/tc-docs/certification/tips-cka-and-ckad)**;
+* Usar o cupom **30KK** da KodeKloud na compra da prova (_avaliar se vai estar disponível_).
