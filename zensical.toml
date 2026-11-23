@@ -3,11 +3,15 @@
 site_name = "Certified Kubernetes Administrator"
 site_description = "Documentação e estudos para a certificação CKA"
 site_author = "Bruno"
-site_url = "https://brsouza-site.github.io/Certified-Kubernetes-Administrator/"
+site_url = "https://bsouza-site.github.io/Certified-Kubernetes-Administrator/"
 
 nav = [
   "index.md",
   { "Introdução" = "introducao/index.md" }
+]
+
+extra_css = [
+  "stylesheets/extra.css"
 ]
 
 [project.theme]
@@ -27,8 +31,3 @@ features = [
 scheme = "slate"
 primary = "indigo"
 accent = "cyan"
-
-[project]
-extra_css = [
-  "stylesheets/extra.css"
-]
