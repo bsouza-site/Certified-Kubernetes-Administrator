@@ -24,14 +24,14 @@ Sempre que você executa **kustomize build** ou **kubectl apply -k** em um diret
 Para iniciar um primeiro exemplo de uso do kustomize, crie um diretório, como **deploy**, nesse diretório devem ser adicionados quatro arquivos de manifestos, o deployment de uma aplicação, o service para essa aplicação, um arquivo para criar o namespace e o arquivo **kustomization.yaml**  
 
 Em relação ao kustomization.yaml, crie o arquivo confirme exemplo abaixo:  
-<div align="center"><img width="405" height="177" alt="image" src="https://github.com/user-attachments/assets/71873eaf-76a2-4521-85e6-7011e0754239" /></div>
+<div align="center"><img width="407" height="175" alt="image" src="https://github.com/user-attachments/assets/77dc8c9b-4a18-4e82-8e9f-65c78e93bf8d" /></div>
 
 Para entender cada campo desse arquivo:
 
 * **apiVersion**: define a versão da API de configuração do Kustomize. Essa é a versão padrão e estável utilizada para interpretar a estrutura do arquivo kustomization.yaml;  
 * **kind**: identifica o tipo de objeto que está sendo declarado, nesse caso, um kustomization;  
 * **resources**: é a lista de entrada que diz ao Kustomize quais arquivos YAML (ou pastas com outros kustomization.yaml) devem ser carregados e processados;  
-* **namespace**: é um campo transformador (_transformer_). Ele percorre todos os recursos listados acima e adiciona ou sobrescreve a linha **namespace: lab** dentro do bloco metadata de cada um deles (esse campo é opcional, eu criei para personalizar o namespace).
+* **namespace**: é um campo transformador (_transformer_). Ele percorre todos os recursos listados acima e adiciona ou sobrescreve a linha **namespace: lab** dentro do bloco metadata de cada um deles (_esse campo é opcional, eu criei para personalizar o namespace_).
 
 **kustomize build**  
 O comando **kustomize build** é o comando que lê o arquivo kustomization.yaml de um diretório, junta todos os recursos listados, aplica as transformações (como namespace, labels e patches) e imprime o resultado final em formato YAML no terminal. Ele funciona como um "dry-run" (pré-visualização) e não altera nada no seu cluster Kubernetes.  
@@ -47,6 +47,18 @@ Ou você pode propriamente implantar as configurações no cluster com os comand
 Da mesma forma que foram criados recursos, é possível eliminar os recursos, para isso, execute **`kustomize build . | kubectl delete -f`** - ou **`kubectl delete -k .`**  
 <br>
 
-## Gerenciando diretórios.
+## Gerenciando diretórios.  
+Conforme o número de arquivos e implantações aumenta, você pode querer separar os arquivos por diretórios.  
 
+Neste exemplo, criei o diretório **nginx**, que irá implantar as mesmas soluções dos passos anteriores.  
+<div align="center"><img width="296" height="80" alt="image" src="https://github.com/user-attachments/assets/fbb63d31-d443-4069-87a7-5d882886f129" /></div>
 
+Crie também o diretório **busybox**, inclua nesse diretório um arquivo de manifesto para implantar um Pod com image busybox (coloque nesse manifesto o namespace **lab**).  
+<div align="center"><img width="167" height="44" alt="image" src="https://github.com/user-attachments/assets/0de18baa-f7d3-4bac-9980-980c0dc4cb0d" /></div>
+
+Agora, para que eu possa implantar todos esses recursos no cluster ao mesmo tempo, devemos alterar o arquivo kustomization.yaml da seguinte forma apontando para a nova estrutura de diretórios.
+<div align="center"><img width="404" height="189" alt="image" src="https://github.com/user-attachments/assets/9c0bc7c6-9a65-4ea6-88f0-1d0a58ec5ba3" /></div>
+
+Após executar **`kustomize build . | k apply -k .`**, todos os recursos foram implantados.  
+
+Perceba que essa forma, eu não preciso colocar o caminho completo dos arquivos, apenas o caminho relativo considerando o local que eu me encontro no filesystem.
