@@ -51,10 +51,10 @@ Da mesma forma que foram criados recursos, é possível eliminar os recursos, pa
 Conforme o número de arquivos e implantações aumenta, você pode querer separar os arquivos por diretórios.  
 
 Neste exemplo, criei o diretório **nginx**, que irá implantar as mesmas soluções dos passos anteriores.  
-<div align="center"><img width="296" height="80" alt="image" src="https://github.com/user-attachments/assets/fbb63d31-d443-4069-87a7-5d882886f129" /></div>
+<div align="center"><img width="301" height="79" alt="image" src="https://github.com/user-attachments/assets/ddbb523a-4d90-4ae8-a518-e312ec8cbf1b" /></div>
 
 Crie também o diretório **busybox**, inclua nesse diretório um arquivo de manifesto para implantar um Pod com image busybox (coloque nesse manifesto o namespace **lab**).  
-<div align="center"><img width="167" height="44" alt="image" src="https://github.com/user-attachments/assets/0de18baa-f7d3-4bac-9980-980c0dc4cb0d" /></div>
+<div align="center"><img width="169" height="43" alt="image" src="https://github.com/user-attachments/assets/1c681a15-ea53-4a51-9085-6b6c251839bc" /></div>
 
 Agora, para que eu possa implantar todos esses recursos no cluster ao mesmo tempo, devemos alterar o arquivo kustomization.yaml da seguinte forma apontando para a nova estrutura de diretórios.
 <div align="center"><img width="404" height="189" alt="image" src="https://github.com/user-attachments/assets/9c0bc7c6-9a65-4ea6-88f0-1d0a58ec5ba3" /></div>
