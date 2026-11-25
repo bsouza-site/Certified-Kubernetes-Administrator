@@ -54,7 +54,7 @@ Neste exemplo, criei o diretório **nginx**, que irá implantar as mesmas soluç
 <div align="center"><img width="301" height="79" alt="image" src="https://github.com/user-attachments/assets/ddbb523a-4d90-4ae8-a518-e312ec8cbf1b" /></div>
 
 Crie também o diretório **busybox**, inclua nesse diretório um arquivo de manifesto para implantar um Pod com image busybox (coloque nesse manifesto o namespace **lab**).  
-<div align="center"><img width="169" height="43" alt="image" src="https://github.com/user-attachments/assets/1c681a15-ea53-4a51-9085-6b6c251839bc" /></div>
+<div align="center"><img width="166" height="44" alt="image" src="https://github.com/user-attachments/assets/5c916680-0a17-4b0c-990e-6295644b7e7d" /></div>
 
 Agora, para que eu possa implantar todos esses recursos no cluster ao mesmo tempo, devemos alterar o arquivo kustomization.yaml da seguinte forma apontando para a nova estrutura de diretórios.
 <div align="center"><img width="404" height="189" alt="image" src="https://github.com/user-attachments/assets/9c0bc7c6-9a65-4ea6-88f0-1d0a58ec5ba3" /></div>
