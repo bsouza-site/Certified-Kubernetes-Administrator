@@ -82,3 +82,21 @@ Essa estrutura foi criada dessa forma apenas como exemplo de como implantar vár
 <br>
 
 ## Transformers.
+Transformers no Kustomize são regras declarativas que modificam manifestos YAML do Kubernetes durante o processo de build (**kustomize build**), sem alterar os arquivos originais. Eles rodam após os generators e aplicam alterações sistemáticas em um ou vários recursos de forma reutilizável.  
+
+No exemplo do laboratório anterior, o campo **namespace** já era um transformer, onde ele definiu o namespace **lab** em todos os Pods.  
+
+**Os principais transformers nativos são:**  
+
+* **Namespace (namespace):** define ou substitui o namespace em múltiplos recursos de uma só vez;  
+* **Labels (labels / commonLabels):** adiciona ou altera labels em metadados e seletores de recursos;  
+* **Annotations (annotations / commonAnnotations):** inclui ou atualiza anotações nos manifestos;  
+* **Prefixo e sufixo (namePrefix e nameSuffix):** adiciona prefixos ou sufixos aos nomes dos recursos (como dev- ou -v2);  
+* **Imagens (images):** altera nomes, tags (newTag) ou digests de imagens de contêineres por ambiente;  
+* **Referências de nomes (nameReference):** atualiza automaticamente referências entre recursos quando um nome é alterado por prefixo ou sufixo;  
+
+Abaixo, um exemplo usando **labels**:  
+<div align="center"><img width="201" height="60" alt="image" src="https://github.com/user-attachments/assets/388ec1e1-1782-40fd-a3ea-e082b0f442e6" /></div>
+
+O exemplo acima adicionará a label **lab: KodeKloud** em todos os Pods. Você pode combinar múltiplas regras dentro da lista **labels** usando as seguintes propriedades:
+<div align="center"><img width="598" height="181" alt="image" src="https://github.com/user-attachments/assets/0c3f0140-ef77-441a-9d18-aca8ca5fd476" /></div>
