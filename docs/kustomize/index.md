@@ -100,3 +100,11 @@ Abaixo, um exemplo usando **labels**:
 
 O exemplo acima adicionará a label **lab: KodeKloud** em todos os Pods. Você pode combinar múltiplas regras dentro da lista **labels** usando as seguintes propriedades:
 <div align="center"><img width="598" height="181" alt="image" src="https://github.com/user-attachments/assets/0c3f0140-ef77-441a-9d18-aca8ca5fd476" /></div>
+
+Agora, um exemplo usando **images**.  
+<div align="center"><img width="198" height="79" alt="image" src="https://github.com/user-attachments/assets/83f82b20-494b-4d42-bf2c-e4a1c7c3c202" /></div>
+
+No exemplo acima, originalmente, os Pods usavam a imagem **busybox**, e a transformação irá usar a imagem **busybox** com a tag **1.37.0**
+<br>
+
+## Patchs.
