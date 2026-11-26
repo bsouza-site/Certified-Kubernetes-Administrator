@@ -113,7 +113,7 @@ Patches no Kustomize são instruções usadas para modificar campos específicos
 Enquanto os transformers (labels, images, namespace) aplicam regras globais e padronizadas em vários recursos ao mesmo tempo, os patches fazem cirurgias pontuais em um ou mais recursos específicos usando o campo patches no kustomization.yaml.  
 <br>
 
-## JSON 6902 Patch.
+**JSON 6902 Patch.**  
 Patch JSON 6902 (RFC 6902) é um formato padronizado para descrever alterações em um documento JSON (ou YAML, no caso do Kubernetes e Kustomize) por meio de uma lista de operações explícitas sobre caminhos específicos (path) do recurso.  
 
 No Kustomize, ele é uma das duas principais formas de aplicar patches (junto com o Strategic Merge Patch). Enquanto o Strategic Merge usa um trecho parcial do manifesto YAML para mesclar alterações, o JSON Patch 6902 usa instruções precisas passo a passo. Abaixo, um exemplo, alterando o nome de um Deployment.  
