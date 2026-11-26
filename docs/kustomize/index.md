@@ -108,3 +108,35 @@ No exemplo acima, originalmente, os Pods usavam a imagem **busybox**, e a transf
 <br>
 
 ## Patchs.
+Patches no Kustomize são instruções usadas para modificar campos específicos de recursos do Kubernetes (como aumentar réplicas, alterar limites de CPU/memória ou adicionar variáveis de ambiente) sem precisar duplicar o arquivo YAML inteiro.  
+
+Enquanto os transformers (labels, images, namespace) aplicam regras globais e padronizadas em vários recursos ao mesmo tempo, os patches fazem cirurgias pontuais em um ou mais recursos específicos usando o campo patches no kustomization.yaml.  
+<br>
+
+# JSON 6902 Patch.
+Patch JSON 6902 (RFC 6902) é um formato padronizado para descrever alterações em um documento JSON (ou YAML, no caso do Kubernetes e Kustomize) por meio de uma lista de operações explícitas sobre caminhos específicos (path) do recurso.  
+
+No Kustomize, ele é uma das duas principais formas de aplicar patches (junto com o Strategic Merge Patch). Enquanto o Strategic Merge usa um trecho parcial do manifesto YAML para mesclar alterações, o JSON Patch 6902 usa instruções precisas passo a passo. Abaixo, um exemplo, alterando o nome de um Deployment.  
+
+Na estrutura de arquivos **deploy** eu tenho os seguintes arquivos:  
+<div align="center"><img width="282" height="109" alt="image" src="https://github.com/user-attachments/assets/4c124842-1f4c-49f0-8912-46fd2c2cd267" /></div>
+
+O arquivo **kustomization.yaml** foi configurado da seguinte forma:  
+<div align="center"><img width="404" height="327" alt="image" src="https://github.com/user-attachments/assets/2a3cb73d-c8a4-496a-96b8-dbb851e60640" /></div>
+
+Para entender as configurações criadas no arquivo acima:
+
+* **patches**: inicia a lista de modificações pontuais que o Kustomize aplicará sobre os recursos carregados.  
+  * **target**: define o filtro de qual recurso especifico receberá a alteração;  
+  * **kind**: restringe a busca apenas a recursos do tipo Deployment;  
+  * **name**: seleciona especificamente o Deployment cujo metadata.name original é nginx-deployment (definido no arquivo nginx/nginx-deployment.yaml);  
+
+* **patch**: inicia o bloco de instruções do patch escrito diretamente no arquivo (inline). O operador |- indica uma string de múltiplas linhas sem quebra de linha extra no final;  
+  * **op**: define a operação JSON Patch como substituição (troca um valor existente por outro);  
+  * **path**: aponta o caminho exato no YAML que será alterado (o campo name dentro de metadata);  
+  * **value**: define o novo nome que substituirá nginx-deployment no manifesto final.  
+
+Para usar mais de uma operação ao mesmo tempo, adicione a operação logo abaixo, como no exemplo abaixo, a operação para alterar o número de réplicas no Deployment:  
+<div align="center"><img width="379" height="230" alt="image" src="https://github.com/user-attachments/assets/7964db72-e3d7-4efe-9b0f-0756678e45a2" /></div>
+
+Além da operação **replace**, existem as operações **add** e **remove**. Abaixo, cada um dos dois exemplos:  
