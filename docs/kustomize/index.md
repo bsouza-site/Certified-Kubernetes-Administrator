@@ -62,3 +62,23 @@ Agora, para que eu possa implantar todos esses recursos no cluster ao mesmo temp
 Após executar **`kustomize build . | k apply -k .`**, todos os recursos foram implantados.  
 
 Perceba que essa forma, eu não preciso colocar o caminho completo dos arquivos, apenas o caminho relativo considerando o local que eu me encontro no filesystem.
+<br>
+
+## Trabalhando com vários kustomization.yaml
+Caso a sua estrutura de arquivos e implantações cresça muito, é possível deixar a configuração do kustomization.yaml mais granular ainda usando um kustomization.yaml dentro de cada diretório.  
+
+Como exemplo, inicie criando a seguinte estrutura de diretórios.  
+<div align="center"><img width="250" height="510" alt="image" src="https://github.com/user-attachments/assets/d4ca276f-d6bf-4814-909d-68209eb99f12" /></div>
+
+O primeiro kustomization.yaml (grifado) aponta para o arquivo **namespace.yaml** para criar o namespace lab, e aponta para todos os diretórios de Pods.  
+<div align="center"><img width="400" height="289" alt="image" src="https://github.com/user-attachments/assets/519c43d2-c957-45a4-8113-b3bdad82abfa" /></div>
+
+Dentro de cada diretório de Pods, você precisa ter o manifesto **busybox.yaml** para criar o Pod propriamente, e outro arquivo **kustomization.yaml** apontando para esse arquivo de manifesto... abaixo, o exemplo do **pod1/kustomization.yaml**  
+<div align="center"><img width="398" height="137" alt="image" src="https://github.com/user-attachments/assets/9e9d20d9-967c-426c-9854-5e3ef545b0bf" /></div>
+
+Esse **pod1/kustomization.yaml** pode ser igual para todos os outros.  
+Essa estrutura foi criada dessa forma apenas como exemplo de como implantar vários manifestos ao mesmo tempo com o Kustomization. Após executar **`kubectl apply -k .`**, todos esses manifestos são implantados ao mesmo tempo.
+<div align="center"><img width="205" height="172" alt="image" src="https://github.com/user-attachments/assets/6e425757-bd11-4a23-8932-0a689880a632" /></div>
+<br>
+
+## Transformers.
