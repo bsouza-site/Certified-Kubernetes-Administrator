@@ -139,4 +139,63 @@ Para entender as configurações criadas no arquivo acima:
 Para usar mais de uma operação ao mesmo tempo, adicione a operação logo abaixo, como no exemplo abaixo, a operação para alterar o número de réplicas no Deployment:  
 <div align="center"><img width="379" height="230" alt="image" src="https://github.com/user-attachments/assets/7964db72-e3d7-4efe-9b0f-0756678e45a2" /></div>
 
-Além da operação **replace**, existem as operações **add** e **remove**. Abaixo, cada um dos dois exemplos:  
+Além da operação **replace**, existem as operações **add** e **remove**. Abaixo, cada um dos dois exemplos:   
+
+Neste exemplo, eu estou adicionando a label **dev: brsouza** em **spec.template.metadata.labels** de um Deployment.  
+<div align="center"><img width="455" height="347" alt="image" src="https://github.com/user-attachments/assets/3f405f68-39f9-46d8-b7ed-b51b4f71689e" /></div>
+
+Para utilizar a operação **remove**, o componente já deve existir no Deployment... com isso, no Deployment, eu adicionei em **spec.template.metadata.labels** a label **dev: brsouza**  
+
+Após isso, criei a transformação abaixo, para remover a label:
+<div align="center"><img width="417" height="71" alt="image" src="https://github.com/user-attachments/assets/7b6dced1-4417-4308-b675-741edf4c57fd" /></div>
+
+Com isso, o Deployment é implantado sem essa label.  
+<br>
+
+## Strategic merge patch.
+O **strategic merge patch** é um formato de atualização parcial de recursos no Kubernetes que mescla campos de forma inteligente com base na estrutura do objeto e em chaves de mesclagem (merge keys), em vez de substituir listas inteiras.  
+
+Abaixo, como trabalhar com o formato strategic merge patch. Neste momento, eu vou trocar a configuração dos exemplos acima, porém, usando o formato strategic merge patch.  
+<img width="338" height="212" alt="image" src="https://github.com/user-attachments/assets/9847cb54-d5bd-4132-90a4-f6eea7ff64a7" />
+
+Pode perceber que os campos em patch são muito parecidos com um arquivo de manifesto do Deployment.  
+
+**Patch em arquivo separado.**  
+No Kustomization, você pode configurar o patch em um arquivo separado. No exemplo abaixo, eu apontei a minha configuração para o arquivos **labels.yaml**  
+<div align="center"><img width="198" height="42" alt="image" src="https://github.com/user-attachments/assets/64fef4d8-b9bb-4cec-9082-80560ca1e0ac" /></div>
+
+Depois, criei o arquivo **labels.yaml** apenas para customizar o número de réplicas.  
+<div align="center"><img width="243" height="120" alt="image" src="https://github.com/user-attachments/assets/45671d11-3233-44a5-9fd1-62bd3f511d9d" /></div>
+
+## Overlays.
+No Kustomize, Overlays são configurações que permitem personalizar os mesmos manifests Kubernetes para diferentes ambientes, sem precisar duplicar todos os arquivos YAML.  
+
+**Como funcionam?**
+* **Estrutura em camadas**: a pasta **base/** guarda os manifestos comuns e o arquivo **kustomization.yaml** principal. Cada subpasta em **overlays/** representa um ambiente e contém seu próprio **kustomization.yaml** que aponta para a base;
+
+* **Regra prática**: o que é igual em todos os ambientes fica na base; o que muda por ambiente fica no overlay;  
+
+* **Aplicação**: você gera ou aplica o resultado final com comandos como **kubectl kustomize overlays/prod** ou **kubectl apply -k overlays/prod**  
+
+**Exemplo de uso.**  
+Considerando que eu já tenho a estrutura de arquivo abaixo, vou iniciar um exemplo de utilização da estrutura com overlays.
+<div align="center"><img width="294" height="109" alt="image" src="https://github.com/user-attachments/assets/c590218a-e4a3-44e5-a922-036838a4359d" /></div>
+
+Agora, crie o diretório **overlays/development** e crie o arquivo **kustomization.yaml** neste local com o conteúdo abaixo:    
+<div align="center"><img width="246" height="156" alt="image" src="https://github.com/user-attachments/assets/23670c1a-a30c-45dd-8142-84e2222f9c29" /></div>
+
+Essa configuração indica:  
+* **resources**: reutiliza a base que está dois níveis acima;  
+* **nameSuffix**: adiciona **-dev** ao nome dos recursos;  
+* **replicas**: define uma réplica para o Deployment chamado nginx-deployment.  
+
+Crie também o diretório **overlays/production** e crie o arquivo **kustomization.yaml** neste local com o conteúdo abaixo:  
+<div align="center"><img width="249" height="154" alt="image" src="https://github.com/user-attachments/assets/86d13eea-6e2f-40ad-b411-50394baaee2a" /></div>
+
+Para esse caso do **production**, a ideia é a mesma, apenas alterando o **nameSuffix** e o número de réplicas.  
+
+Eu criei o diretório **base**, coloquei o kustomization.yaml nesse diretório e os arquivos de manifesto da aplicação também nesse diretório... a estrutura final deve ficar da seguinte forma:  
+<div align="center"><img width="329" height="228" alt="image" src="https://github.com/user-attachments/assets/764b2c23-0f6f-4f76-8dde-2b8672592def" /></div>
+
+Após executar **kubectl apply -k overlays/development/** e **kubectl apply -k overlays/production/** os Pods e os Services foram implantados no namespace **lab**
+<div align="center"><img width="558" height="139" alt="image" src="https://github.com/user-attachments/assets/9b9d3a77-1e4f-48b9-a3a8-bb41687df0ff" /></div>
