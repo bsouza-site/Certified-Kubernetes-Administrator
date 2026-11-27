@@ -162,7 +162,7 @@ Pode perceber que os campos em patch são muito parecidos com um arquivo de mani
 
 **Patch em arquivo separado.**  
 No Kustomization, você pode configurar o patch em um arquivo separado. No exemplo abaixo, eu apontei a minha configuração para o arquivos **labels.yaml**  
-<div align="center"><img width="198" height="42" alt="image" src="https://github.com/user-attachments/assets/64fef4d8-b9bb-4cec-9082-80560ca1e0ac" /></div>
+<div align="center"><img width="199" height="42" alt="image" src="https://github.com/user-attachments/assets/0276903f-01b9-4d59-91d2-fbc79858bcc2" /></div>
 
 Depois, criei o arquivo **labels.yaml** apenas para customizar o número de réplicas.  
 <div align="center"><img width="243" height="120" alt="image" src="https://github.com/user-attachments/assets/45671d11-3233-44a5-9fd1-62bd3f511d9d" /></div>
@@ -180,12 +180,13 @@ No Kustomize, Overlays são configurações que permitem personalizar os mesmos 
 
 **Exemplo de uso.**  
 Considerando que eu já tenho a estrutura de arquivo abaixo, vou iniciar um exemplo de utilização da estrutura com overlays.
-<div align="center"><img width="294" height="109" alt="image" src="https://github.com/user-attachments/assets/c590218a-e4a3-44e5-a922-036838a4359d" /></div>
+<div align="center"><img width="284" height="110" alt="image" src="https://github.com/user-attachments/assets/b6200923-f774-4e2b-a356-b7a1c591e79c" /></div>
 
 Agora, crie o diretório **overlays/development** e crie o arquivo **kustomization.yaml** neste local com o conteúdo abaixo:    
 <div align="center"><img width="246" height="156" alt="image" src="https://github.com/user-attachments/assets/23670c1a-a30c-45dd-8142-84e2222f9c29" /></div>
 
 Essa configuração indica:  
+
 * **resources**: reutiliza a base que está dois níveis acima;  
 * **nameSuffix**: adiciona **-dev** ao nome dos recursos;  
 * **replicas**: define uma réplica para o Deployment chamado nginx-deployment.  
@@ -198,8 +199,8 @@ Para esse caso do **production**, a ideia é a mesma, apenas alterando o **nameS
 Eu criei o diretório **base**, coloquei o kustomization.yaml nesse diretório e os arquivos de manifesto da aplicação também nesse diretório... a estrutura final deve ficar da seguinte forma:  
 <div align="center"><img width="329" height="228" alt="image" src="https://github.com/user-attachments/assets/764b2c23-0f6f-4f76-8dde-2b8672592def" /></div>
 
-Após executar **kubectl apply -k overlays/development/** e **kubectl apply -k overlays/production/** os Pods e os Services foram implantados no namespace **lab**
-<div align="center"><img width="558" height="139" alt="image" src="https://github.com/user-attachments/assets/9b9d3a77-1e4f-48b9-a3a8-bb41687df0ff" /></div>
+Após executar **`kubectl apply -k overlays/development/`** e **`kubectl apply -k overlays/production/`** os Pods e os Services foram implantados no namespace **lab**
+<div align="center"><img width="563" height="137" alt="image" src="https://github.com/user-attachments/assets/02df5d20-5f96-4988-a41b-df38141c31a7" /></div>
 <br>
 
 ## Components.
@@ -213,7 +214,7 @@ Na estrutura que eu já tenho, crie o diretório **components/common-labels/** e
 <div align="center"><img width="420" height="99" alt="image" src="https://github.com/user-attachments/assets/dc6581ef-603f-47ea-98fa-4771f8a00531" /></div>
 
 Crie o arquivo components/common-labels/**labels.yaml** com o conteúdo abaixo:  
-<div align="center"><img width="239" height="137" alt="image" src="https://github.com/user-attachments/assets/b35f39d4-72b3-4b9b-8282-4ad167e5a0bd" /></div>
+<div align="center"><img width="239" height="137" alt="image" src="https://github.com/user-attachments/assets/5a7fe675-88c2-4005-9dc7-b95f0d52dce9" /></div>
 
 Agora, eu vou utilizar esse component na estrutura **development**. Para isso, edite o arquivo **overlays/development/kustomization.yaml** da seguinte forma:  
 <div align="center"><img width="323" height="289" alt="image" src="https://github.com/user-attachments/assets/e9036d21-c364-4db8-a93d-a00c26bab241" /></div>
