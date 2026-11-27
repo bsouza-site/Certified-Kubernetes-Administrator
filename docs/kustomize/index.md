@@ -152,11 +152,11 @@ Após isso, criei a transformação abaixo, para remover a label:
 Com isso, o Deployment é implantado sem essa label.  
 <br>
 
-## Strategic merge patch.
+**Strategic merge patch.**  
 O **strategic merge patch** é um formato de atualização parcial de recursos no Kubernetes que mescla campos de forma inteligente com base na estrutura do objeto e em chaves de mesclagem (merge keys), em vez de substituir listas inteiras.  
 
 Abaixo, como trabalhar com o formato strategic merge patch. Neste momento, eu vou trocar a configuração dos exemplos acima, porém, usando o formato strategic merge patch.  
-<img width="338" height="212" alt="image" src="https://github.com/user-attachments/assets/9847cb54-d5bd-4132-90a4-f6eea7ff64a7" />
+<div align="center"><img width="338" height="212" alt="image" src="https://github.com/user-attachments/assets/9847cb54-d5bd-4132-90a4-f6eea7ff64a7" /></div>
 
 Pode perceber que os campos em patch são muito parecidos com um arquivo de manifesto do Deployment.  
 
@@ -175,7 +175,7 @@ No Kustomize, Overlays são configurações que permitem personalizar os mesmos 
 
 * **Regra prática**: o que é igual em todos os ambientes fica na base; o que muda por ambiente fica no overlay;  
 
-* **Aplicação**: você gera ou aplica o resultado final com comandos como **kubectl kustomize overlays/prod** ou **kubectl apply -k overlays/prod**  
+* **Aplicação**: você gera ou aplica o resultado final com comandos como **`kubectl kustomize overlays/prod`** ou **`kubectl apply -k overlays/prod`**  
 
 **Exemplo de uso.**  
 Considerando que eu já tenho a estrutura de arquivo abaixo, vou iniciar um exemplo de utilização da estrutura com overlays.
