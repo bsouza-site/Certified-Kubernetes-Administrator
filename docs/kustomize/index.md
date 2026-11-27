@@ -147,7 +147,7 @@ Neste exemplo, eu estou adicionando a label **dev: brsouza** em **spec.template.
 Para utilizar a operação **remove**, o componente já deve existir no Deployment... com isso, no Deployment, eu adicionei em **spec.template.metadata.labels** a label **dev: brsouza**  
 
 Após isso, criei a transformação abaixo, para remover a label:
-<div align="center"><img width="417" height="71" alt="image" src="https://github.com/user-attachments/assets/7b6dced1-4417-4308-b675-741edf4c57fd" /></div>
+<div align="center"><img width="415" height="68" alt="image" src="https://github.com/user-attachments/assets/9d6dba3c-165b-4115-a202-ee856a797c8d" /></div>
 
 Com isso, o Deployment é implantado sem essa label.  
 <br>
