@@ -19,3 +19,16 @@ Neste contexto de Helm e Chart, um portal muito útil é o **[Artifacthub](https
 
 * App Store do Kubernetes;  
 * ou tipo um "Google dos Charts".  
+
+## Instalando o Helm.  
+Verifique a documentação e as formas de instalação na página do **[helm.sh](https://helm.sh/)**.  
+Utilizando o script, a instalação é bem simples... siga os passos abaixo para instalação.  
+
+```
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-4
+chmod 700 get_helm.sh
+./get_helm.sh
+```
+
+## Relação de comandos do Helm.  
+Abaixo, os principais comandos para utilização do Helm:  
