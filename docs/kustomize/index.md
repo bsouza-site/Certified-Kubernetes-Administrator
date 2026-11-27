@@ -240,7 +240,7 @@ Assim que os Pods forem implantados, execute **`kubectl describe pod nginx-deplo
 Como pode ser visto abaixo, a label **aplicacao: kustomize** foi implantada no Pod.  
 <div align="center"><img width="431" height="60" alt="image" src="https://github.com/user-attachments/assets/2ea1ef67-a485-4a3d-8e0c-b68b27347629" /></div>  
 
-Como pode ser visto, criando diretórios diferentes de **components**, é possível implantar configurações diferentes, como nesse exemplo simples, implantar labels diferentes.
+Como pode ser visto, criando diretórios diferentes de **components**, é possível implantar configurações diferentes, como nesse exemplo simples, implantar labels diferentes.  
 
 A estrutura final dessa brincadeira 😅 ficou:  
 <div align="center"><img width="324" height="358" alt="image" src="https://github.com/user-attachments/assets/615c353c-c707-4ff9-a312-e83e11e3bea1" /></div>
