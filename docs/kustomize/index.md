@@ -142,7 +142,7 @@ Para usar mais de uma operação ao mesmo tempo, adicione a operação logo abai
 Além da operação **replace**, existem as operações **add** e **remove**. Abaixo, cada um dos dois exemplos:   
 
 Neste exemplo, eu estou adicionando a label **dev: brsouza** em **spec.template.metadata.labels** de um Deployment.  
-<div align="center"><img width="455" height="347" alt="image" src="https://github.com/user-attachments/assets/3f405f68-39f9-46d8-b7ed-b51b4f71689e" /></div>
+<div align="center"><img width="449" height="345" alt="image" src="https://github.com/user-attachments/assets/5e22105a-2d2d-44b5-9db2-181823334f03" /></div>
 
 Para utilizar a operação **remove**, o componente já deve existir no Deployment... com isso, no Deployment, eu adicionei em **spec.template.metadata.labels** a label **dev: brsouza**  
 
@@ -166,6 +166,7 @@ No Kustomization, você pode configurar o patch em um arquivo separado. No exemp
 
 Depois, criei o arquivo **labels.yaml** apenas para customizar o número de réplicas.  
 <div align="center"><img width="243" height="120" alt="image" src="https://github.com/user-attachments/assets/45671d11-3233-44a5-9fd1-62bd3f511d9d" /></div>
+<br>
 
 ## Overlays.
 No Kustomize, Overlays são configurações que permitem personalizar os mesmos manifests Kubernetes para diferentes ambientes, sem precisar duplicar todos os arquivos YAML.  
@@ -199,3 +200,46 @@ Eu criei o diretório **base**, coloquei o kustomization.yaml nesse diretório e
 
 Após executar **kubectl apply -k overlays/development/** e **kubectl apply -k overlays/production/** os Pods e os Services foram implantados no namespace **lab**
 <div align="center"><img width="558" height="139" alt="image" src="https://github.com/user-attachments/assets/9b9d3a77-1e4f-48b9-a3a8-bb41687df0ff" /></div>
+<br>
+
+## Components.
+No Kustomize, components são módulos reutilizáveis de configuração que permitem adicionar funcionalidades ou personalizações específicas aos seus overlays, sem precisar repetir as mesmas configurações em vários ambientes.  
+
+Neste exemplo, irei criar um component bem simples aproveitando a minha estrutura atual, sem adicionar funcionalidades desnecessárias.  
+
+A ideia será criar um componente chamado common-labels, que adicionará uma label app: nginx ao Deployment e ao Service.  
+
+Na estrutura que eu já tenho, crie o diretório **components/common-labels/** e crie o arquivo **kustomization.yaml** com o conteúdo abaixo:
+<div align="center"><img width="420" height="99" alt="image" src="https://github.com/user-attachments/assets/dc6581ef-603f-47ea-98fa-4771f8a00531" /></div>
+
+Crie o arquivo components/common-labels/**labels.yaml** com o conteúdo abaixo:  
+<div align="center"><img width="239" height="137" alt="image" src="https://github.com/user-attachments/assets/b35f39d4-72b3-4b9b-8282-4ad167e5a0bd" /></div>
+
+Agora, eu vou utilizar esse component na estrutura **development**. Para isso, edite o arquivo **overlays/development/kustomization.yaml** da seguinte forma:  
+<div align="center"><img width="323" height="289" alt="image" src="https://github.com/user-attachments/assets/e9036d21-c364-4db8-a93d-a00c26bab241" /></div>
+
+Executando **`kubectl describe deployment nginx-deployment-dev -n lab`**, é possível visualizar a label criada nesse exemplo:  
+<div align="center"><img width="426" height="58" alt="image" src="https://github.com/user-attachments/assets/50382af6-d787-4922-8f4d-ba172d69a19f" /></div>
+
+Para o ambiente **production**, irei fazer de uma forma diferente. Crie a estrutura de diretórios **components/prod-labels** e adicione o arquivo **labels.yaml** com o conteúdo abaixo:  
+<div align="center"><img width="277" height="214" alt="image" src="https://github.com/user-attachments/assets/890aa710-c200-4202-84bd-0818fc876792" /></div>
+
+Para o ambiente **production**, eu vou adicionar as labels no template para que sejam adicionados em todos os Pods.  
+
+Ainda em **components/prod-labels**, adicione o arquivo **kustomization.yaml** com o conteúdo abaixo:  
+<div align="center"><img width="416" height="100" alt="image" src="https://github.com/user-attachments/assets/34a318d7-c751-41d6-b448-0adf2dc96ef4" /></div>
+
+Agora, vá em **overlays/production/kustomization.yaml** e realize a configuração conforme exemplo abaixo:  
+<div align="center"><img width="277" height="264" alt="image" src="https://github.com/user-attachments/assets/64b2c2c8-5798-4ef4-85f1-d2213e911dd3" /></div>
+
+Após realizar essas configurações, execute **`kubectl apply -k overlays/production/`**  
+
+Assim que os Pods forem implantados, execute **`kubectl describe pod nginx-deployment-prod-8749c66b9-pv46h -n lab`**  
+
+Como pode ser visto abaixo, a label **aplicacao: kustomize** foi implantada no Pod.  
+<div align="center"><img width="431" height="60" alt="image" src="https://github.com/user-attachments/assets/2ea1ef67-a485-4a3d-8e0c-b68b27347629" /></div>  
+
+Como pode ser visto, criando diretórios diferentes de **components**, é possível implantar configurações diferentes, como nesse exemplo simples, implantar labels diferentes.
+
+A estrutura final dessa brincadeira 😅 ficou:  
+<div align="center"><img width="324" height="358" alt="image" src="https://github.com/user-attachments/assets/615c353c-c707-4ff9-a312-e83e11e3bea1" /></div>
