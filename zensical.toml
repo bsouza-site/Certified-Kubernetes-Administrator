@@ -9,6 +9,7 @@ nav = [
   "index.md",
   { "01. Introdução" = "introducao/index.md" },
   { "02. Instalação do kubeadm" = "instalacao-kubeadm/index.md" },
+  { "17. Helm" = "helm/index.md" },
   { "18. Kustomize" = "kustomize/index.md" }
 ]
 
