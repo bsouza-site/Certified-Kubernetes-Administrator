@@ -46,9 +46,14 @@ Veja abaixo os principais domínios e competências.
 * Saber como utilizar controladores e recursos de entrada;
 * Compreender e utilizar o CoreDNS.
 
-# Dicas para prova.
-* A prova permite a leitura da documentação do Kubernetes;
-* Acessar sempre **[https://kubernetes.io/pt-br/docs/home/](https://kubernetes.io/pt-br/docs/home/)**;
+# Consulta de documentação oficial.
+De acordo com a lista de **[Recursos Permitidos da Linux Foundation](https://docs.linuxfoundation.org/tc-docs/certification/certification-resources-allowed)**, os sites liberados no navegador interno da máquina virtual durante o exame são estritamente estes:
+
+* Documentação oficial do Helm **[helm.sh/docs](https://helm.sh/docs/)**  
+* Documentação e Blog do Kubernetes **[kubernetes.io/docs](https://kubernetes.io/docs/home/)** e **[kubernetes.io/blog](https://kubernetes.io/blog/)**  
+* Documentação da Gateway API **[gateway-api.sigs.k8s.io](https://gateway-api.sigs.k8s.io/docs/introduction/)**  
+
+# Dicas de preparação para prova.
 * Avaliar a aquisição de simulados, como **[Killer Shell](https://killer.sh/cka)** ou **[sailor.sh](https://sailor.sh/)**;
 * Veja informações da prova na página do **[Cloud Native Computing Foundation](https://www.cncf.io/training/certification/cka/)**;
 * Veja mais dicas para a prova em **[Important Instructions: CKA and CKAD](https://docs.linuxfoundation.org/tc-docs/certification/tips-cka-and-ckad)**;
